@@ -1,101 +1,75 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#000",
-        padding: 15,
+        backgroundColor: '#000',
     },
-
-    // Header
     header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-
-    logo: {
-        color: "#32ff32",
-        fontSize: 32,
-        fontWeight: "bold",
-    },
-
-    userIcon: {
-        width: 35,
-        height: 35,
-        borderRadius: 20,
-    },
-
-    // Banner
-    banner: {
-        width: "100%",
-        height: 190,
-        borderRadius: 12,
-        marginTop: 15,
-    },
-
-    // Seção título
-    section: {
-        color: "white",
-        marginTop: 25,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginBottom: 10,
-        fontSize: 20,
-        fontWeight: "bold",
     },
-
-    // Categorias horizontais
-    catCard: {
-        marginRight: 12,
-        width: 120,
+    logo: {
+        color: '#00cc00',
+        fontSize: 28,
+        fontWeight: 'bold',
     },
-
-    catImg: {
-        width: 120,
-        height: 160,
-        borderRadius: 12,
+    profileIcon: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: '#303030',
     },
-
-    catName: {
-        color: "white",
-        marginTop: 6,
-        fontSize: 14,
-        fontWeight: "600",
+    liveStreamPreview: {
+        height: 200,
+        backgroundColor: '#303030',
+        marginHorizontal: 10,
+        borderRadius: 8,
+        marginBottom: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-
-    // Cards de lives
-    card: {
-        backgroundColor: "#111",
-        borderRadius: 12,
-        flexDirection: "row",
-        padding: 10,
-        marginBottom: 15,
-    },
-
-    cardImg: {
-        width: 130,
-        height: 90,
-        borderRadius: 10,
-    },
-
-    cardInfo: {
-        marginLeft: 12,
-        justifyContent: "space-between",
-    },
-
-    cardTitle: {
-        color: "white",
+    previewText: {
+        color: '#fff',
         fontSize: 16,
-        fontWeight: "bold",
     },
-
-    cardUser: {
-        color: "#aaa",
+    sectionTitle: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginHorizontal: 10,
+        marginBottom: 10,
+    },
+    categoryList: {
+        paddingLeft: 10,
+        marginBottom: 20,
+    },
+    categoryCard: {
+        width: 100,
+        height: 120,
+        marginRight: 10,
+        borderRadius: 8,
+        overflow: 'hidden',
+        backgroundColor: '#303030',
+        justifyContent: 'flex-end',
+        padding: 5,
+    },
+    categoryTitle: {
+        color: '#fff',
+        fontWeight: 'bold',
         fontSize: 14,
     },
-
-    cardViewers: {
-        color: "#32ff32",
-        fontSize: 13,
-        fontWeight: "bold",
+    categoryViewers: {
+        color: '#b0b0b0',
+        fontSize: 10,
     },
+    streamList: {
+        paddingHorizontal: 5,
+    },
+    bottomSpace: {
+        height: 50,
+    }
 });
