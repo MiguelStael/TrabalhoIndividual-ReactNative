@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 
 interface StreamCardProps {
@@ -7,16 +7,17 @@ interface StreamCardProps {
     streamer: string;
     isLive: boolean;
     viewers: number;
-    image: string;
-    avatar: string;
     tags?: string[];
 }
 
-const StreamCard: React.FC<StreamCardProps> = ({ title, streamer, isLive, viewers, image, avatar, tags }) => {
+const StreamCard: React.FC<StreamCardProps> = ({ title, streamer, isLive, viewers, tags }) => {
     return (
         <TouchableOpacity style={styles.cardContainer} activeOpacity={0.8}>
             <View style={styles.imageWrapper}>
-                <Image source={{ uri: image }} style={styles.image} />
+                <View style={styles.simulatedImage}>
+                    <Text style={styles.simulatedImageCardText}>Live Preview</Text>
+                </View>
+
                 {isLive && (
                     <View style={styles.liveTag}>
                         <Text style={styles.liveText}>LIVE</Text>
@@ -27,7 +28,7 @@ const StreamCard: React.FC<StreamCardProps> = ({ title, streamer, isLive, viewer
                 </View>
             </View>
             <View style={styles.infoContainer}>
-                <Image source={{ uri: avatar }} style={styles.avatar} />
+                <View style={styles.avatar} />
                 <View style={styles.textContainer}>
                     <Text style={styles.title} numberOfLines={2}>{title}</Text>
                     <Text style={styles.streamerName}>{streamer}</Text>

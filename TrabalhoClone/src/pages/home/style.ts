@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
@@ -56,10 +56,23 @@ export const styles = StyleSheet.create({
         position: 'relative',
         marginBottom: 20,
     },
-    featuredLiveImage: {
+    featuredLiveSimulatedImage: {
         width: '100%',
         height: width * 0.55,
-        resizeMode: 'cover',
+        backgroundColor: '#28282A',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 40,
+    },
+    simulatedImageText: {
+        color: '#B0B0B0',
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+    simulatedImageTextSmall: {
+        color: '#606060',
+        fontSize: 12,
+        marginTop: 5,
     },
     liveTagFeatured: {
         position: 'absolute',
@@ -69,20 +82,29 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 8,
         paddingVertical: 3,
-        zIndex: 1,
-    },
-    liveText: {
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: 'bold',
+        zIndex: 2,
     },
     featuredLiveInfoOverlay: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        flexDirection: 'row',
+        alignItems: 'center',
         padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+    },
+    featuredLiveAvatar: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#00FF00',
+        borderWidth: 2,
+        borderColor: '#0E0E10',
+        marginRight: 10,
+    },
+    featuredLiveTextGroup: {
+        flex: 1,
     },
     featuredLiveViewers: {
         color: '#fff',
@@ -138,16 +160,26 @@ export const styles = StyleSheet.create({
         backgroundColor: '#1C1C1E',
         position: 'relative',
     },
-    categoryImage: {
+    categorySimulatedImage: {
         width: '100%',
         height: '100%',
-        resizeMode: 'cover',
+        backgroundColor: '#404040',
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    simulatedCategoryTitle: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 60,
     },
     categoryTag: {
         position: 'absolute',
         top: 5,
         left: 5,
         backgroundColor: '#00FF00',
+        borderRadius: 3,
         paddingHorizontal: 6,
         paddingVertical: 2,
         zIndex: 1,
@@ -174,7 +206,16 @@ export const styles = StyleSheet.create({
         color: '#B0B0B0',
         fontSize: 10,
     },
-
+    categoryBottomTags: {
+        flexDirection: 'row',
+        marginTop: 2,
+    },
+    categoryBottomTagText: {
+        color: '#B0B0B0',
+        fontSize: 10,
+        marginRight: 8,
+        fontWeight: '500',
+    },
     streamList: {
         paddingHorizontal: 5,
         marginBottom: 80,
@@ -207,19 +248,15 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
     },
-    navIcon: {
-        width: 25,
-        height: 25,
-        backgroundColor: '#606060',
-        borderRadius: 12.5,
-        marginBottom: 5,
-    },
-    activeNavIcon: {
-        backgroundColor: '#00FF00',
-    },
     navText: {
         color: '#B0B0B0',
         fontSize: 11,
         fontWeight: '500',
+        marginTop: 2,
+    },
+    liveText: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
     },
 });

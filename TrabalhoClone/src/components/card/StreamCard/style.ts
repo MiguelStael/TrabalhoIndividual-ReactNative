@@ -16,10 +16,16 @@ export const styles = StyleSheet.create({
         overflow: 'hidden',
         marginBottom: 8,
     },
-    image: {
+    simulatedImage: {
         width: '100%',
         height: '100%',
-        resizeMode: 'cover',
+        backgroundColor: '#303030',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    simulatedImageCardText: {
+        color: '#808080',
+        fontSize: 14,
     },
     liveTag: {
         position: 'absolute',
@@ -58,10 +64,10 @@ export const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 15,
-        backgroundColor: '#404040',
+        backgroundColor: '#00FF00',
         marginRight: 8,
         borderWidth: 1,
-        borderColor: '#00FF00',
+        borderColor: '#1C1C1E',
     },
     textContainer: {
         flex: 1,

@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, Text, ScrollView, FlatList, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { View, Text, ScrollView, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { styles } from './style';
 import StreamCard from '../../../src/components/card/StreamCard';
+import { Ionicons, Feather } from '@expo/vector-icons';
 
-const { width } = Dimensions.get('window');
+Dimensions.get('window');
 
 interface Category {
   id: string;
   title: string;
   viewers: string;
-  image: string;
   tag?: string;
+  secondaryTag?: string;
 }
 
 interface Stream {
@@ -19,27 +20,26 @@ interface Stream {
   streamer: string;
   isLive: boolean;
   viewers: number;
-  image: string;
-  avatar: string;
   tags?: string[];
 }
 
 const categories: Category[] = [
-  { id: '1', title: 'Just Chatting', viewers: '209.1K', image: 'https://placehold.co/200x250/303030/FFFFFF/png?text=Just+Chatting', tag: 'IRL' },
-  { id: '2', title: 'Grand Theft Auto V', viewers: '113.3K', image: 'https://placehold.co/200x250/303030/FFFFFF/png?text=GTA+V', tag: 'Shooter' },
-  { id: '3', title: 'Slots & Casino', viewers: '79K', image: 'https://placehold.co/200x250/303030/FFFFFF/png?text=Casino', tag: 'Gambling' },
-  { id: '4', title: 'Rust', viewers: '76.6K', image: 'https://placehold.co/200x250/303030/FFFFFF/png?text=Rust', tag: 'FPS' },
-  { id: '5', title: 'Music', viewers: '50K', image: 'https://placehold.co/200x250/303030/FFFFFF/png?text=Music' },
+  { id: '1', title: 'Just Chatting', viewers: '209.1K', tag: 'IRL', secondaryTag: 'Casual' },
+  { id: '2', title: 'Grand Theft Auto V', viewers: '113.3K', tag: 'Shooter', secondaryTag: 'Action' },
+  { id: '3', title: 'Slots & Casino', viewers: '79K', tag: 'Gambling', secondaryTag: 'Entertainment' },
+  { id: '4', title: 'Rust', viewers: '76.6K', tag: 'FPS', secondaryTag: 'Survival' },
+  { id: '5', title: 'Music', viewers: '50K', tag: 'IRL', secondaryTag: 'Art' },
 ];
 
 const streams: Stream[] = [
-  { id: 'a', title: "I'm back from my trip, let's play!", streamer: 'FamousStreamer', isLive: true, viewers: 5420, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+1', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=F' },
-  { id: 'b', title: 'Late night coding sesh | !github', streamer: 'CoderGuy', isLive: true, viewers: 1800, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+2', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=C' },
-  { id: 'c', title: 'Valorant Ranked Climb', streamer: 'ProGamer', isLive: true, viewers: 990, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+3', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=P' },
-  { id: 'd', title: 'Making a pizza from scratch', streamer: 'CookingChannel', isLive: true, viewers: 450, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+4', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=K' },
-  { id: 'e', title: 'Studying for the test', streamer: 'StudyBuddy', isLive: true, viewers: 210, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+5', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=S' },
-  { id: 'f', title: 'Art & Design stream', streamer: 'DrawingGirl', isLive: true, viewers: 750, image: 'https://placehold.co/300x170/303030/FFFFFF/png?text=Live+6', avatar: 'https://placehold.co/40x40/303030/FFFFFF/png?text=D' },
+  { id: 'a', title: "I'm back from my trip, let's play!", streamer: 'FamousStreamer', isLive: true, viewers: 5420, tags: ['Gaming', 'Adventure'] },
+  { id: 'b', title: 'Late night coding sesh | !github', streamer: 'CoderGuy', isLive: true, viewers: 1800, tags: ['Coding', 'Tech', '!github'] },
+  { id: 'c', title: 'Valorant Ranked Climb', streamer: 'ProGamer', isLive: true, viewers: 990, tags: ['FPS', 'Valorant'] },
+  { id: 'd', title: 'Making a pizza from scratch', streamer: 'CookingChannel', isLive: true, viewers: 450, tags: ['Cooking', 'Food'] },
+  { id: 'e', title: 'Studying for the test', streamer: 'StudyBuddy', isLive: true, viewers: 210, tags: ['Study', 'Chill'] },
+  { id: 'f', title: 'Art & Design stream', streamer: 'DrawingGirl', isLive: true, viewers: 750, tags: ['Art', 'Design'] },
 ];
+
 
 const HomePage: React.FC = () => {
   return (
@@ -56,22 +56,30 @@ const HomePage: React.FC = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <TouchableOpacity style={styles.featuredLiveContainer} activeOpacity={0.9}>
-          <Image source={{ uri: 'https://placehold.co/700x400/303030/FFFFFF/png?text=Featured+Live' }} style={styles.featuredLiveImage} />
+          <View style={styles.featuredLiveSimulatedImage}>
+            <Text style={styles.simulatedImageText}>ARC Raiders</Text>
+            <Text style={styles.simulatedImageTextSmall}>INVENTORY & MAP</Text>
+          </View>
 
           <View style={styles.liveTagFeatured}>
             <Text style={styles.liveText}>LIVE</Text>
           </View>
-
           <View style={styles.featuredLiveInfoOverlay}>
-            <Text style={styles.featuredLiveViewers}>542 watching</Text>
-            <Text style={styles.featuredLiveTitle}>Imma finish all these pushups by the...</Text>
-            <Text style={styles.featuredLiveStreamer}>shortypie</Text>
+            <View style={styles.featuredLiveAvatar} />
 
-            <View style={styles.featuredLiveTagsContainer}>
-              <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>English</Text></View>
-              <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>18+</Text></View>
-              <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>irl</Text></View>
-              <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>short</Text></View>
+            <View style={styles.featuredLiveTextGroup}>
+              <Text style={styles.featuredLiveViewers}>542 watching</Text>
+              <Text style={styles.featuredLiveTitle} numberOfLines={1}>Imma finish all these pushups by the...</Text>
+              <Text style={styles.featuredLiveStreamer}>shortypie</Text>
+
+              <View style={styles.featuredLiveTagsContainer}>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>English</Text></View>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>18+</Text></View>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>irl</Text></View>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>short</Text></View>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>SmileRp</Text></View>
+                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>pog</Text></View>
+              </View>
             </View>
           </View>
         </TouchableOpacity>
@@ -82,7 +90,10 @@ const HomePage: React.FC = () => {
           data={categories}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.categoryCard} activeOpacity={0.8}>
-              <Image source={{ uri: item.image }} style={styles.categoryImage} />
+              <View style={styles.categorySimulatedImage}>
+                <Text style={styles.simulatedCategoryTitle}>{item.title}</Text>
+              </View>
+
               {item.tag && (
                 <View style={styles.categoryTag}>
                   <Text style={styles.categoryTagText}>{item.tag}</Text>
@@ -91,6 +102,10 @@ const HomePage: React.FC = () => {
               <View style={styles.categoryInfo}>
                 <Text style={styles.categoryTitle}>{item.title}</Text>
                 <Text style={styles.categoryViewers}>{item.viewers} watching</Text>
+                <View style={styles.categoryBottomTags}>
+                  <Text style={styles.categoryBottomTagText}>{item.tag}</Text>
+                  <Text style={styles.categoryBottomTagText}>{item.secondaryTag}</Text>
+                </View>
               </View>
             </TouchableOpacity>
           )}
@@ -108,8 +123,6 @@ const HomePage: React.FC = () => {
               streamer={item.streamer}
               isLive={item.isLive}
               viewers={item.viewers}
-              image={item.image}
-              avatar={item.avatar}
               tags={item.tags}
             />
           )}
@@ -125,22 +138,19 @@ const HomePage: React.FC = () => {
 
       <View style={styles.bottomNavBar}>
         <TouchableOpacity style={styles.navItem}>
-          <View style={[styles.navIcon, styles.activeNavIcon]} />
-          <Text style={styles.navText}>Home</Text>
+          <Ionicons name="home" size={24} color="#00FF00" />
+          <Text style={[styles.navText, { color: '#00FF00' }]}>Home</Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.navItem}>
-          <View style={styles.navIcon} />
+          <Ionicons name="compass-outline" size={24} color="#B0B0B0" />
           <Text style={styles.navText}>Browse</Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.navItem}>
-          <View style={styles.navIcon} />
+          <Feather name="heart" size={24} color="#B0B0B0" />
           <Text style={styles.navText}>Following</Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.navItem}>
-          <View style={styles.navIcon} />
+          <Ionicons name="search" size={24} color="#B0B0B0" />
           <Text style={styles.navText}>Search</Text>
         </TouchableOpacity>
       </View>
