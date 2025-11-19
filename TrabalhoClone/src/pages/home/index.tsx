@@ -1,10 +1,18 @@
 import React from 'react';
-import { View, Text, ScrollView, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, ScrollView, FlatList, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { styles } from './style';
 import StreamCard from '../../../src/components/card/StreamCard';
 import { Ionicons, Feather } from '@expo/vector-icons';
 
-Dimensions.get('window');
+const { width } = Dimensions.get('window');
+
+const avatarProfileImage = require('../../assets/avatar.webp');
+const mainFeaturedStreamImage = require('../../assets/imagemDeStreamer.webp');
+const catSlotsCasinoImage = require('../../assets/casino.webp');
+const catGtaImage = require('../../assets/gta.webp');
+const catJustChattingImage = require('../../assets/justchatting.jpg');
+const defaultStreamPlaceholder = require('../../assets/kickLogo.jpeg');
+
 
 interface Category {
   id: string;
@@ -12,6 +20,7 @@ interface Category {
   viewers: string;
   tag?: string;
   secondaryTag?: string;
+  image: any;
 }
 
 interface Stream {
@@ -21,27 +30,27 @@ interface Stream {
   isLive: boolean;
   viewers: number;
   tags?: string[];
+  avatar: any;
+  streamImage: any;
 }
 
 const categories: Category[] = [
-  { id: '1', title: 'Just Chatting', viewers: '209.1K', tag: 'IRL', secondaryTag: 'Casual' },
-  { id: '2', title: 'Grand Theft Auto V', viewers: '113.3K', tag: 'Shooter', secondaryTag: 'Action' },
-  { id: '3', title: 'Slots & Casino', viewers: '79K', tag: 'Gambling', secondaryTag: 'Entertainment' },
-  { id: '4', title: 'Rust', viewers: '76.6K', tag: 'FPS', secondaryTag: 'Survival' },
-  { id: '5', title: 'Music', viewers: '50K', tag: 'IRL', secondaryTag: 'Art' },
+  { id: '1', title: 'Just Chatting', viewers: '209.1K', tag: 'IRL', secondaryTag: 'Casual', image: catJustChattingImage },
+  { id: '2', title: 'Grand Theft Auto V', viewers: '113.3K', tag: 'Shooter', secondaryTag: 'Action', image: catGtaImage },
+  { id: '3', title: 'Slots & Casino', viewers: '79K', tag: 'Gambling', secondaryTag: 'Entertainment', image: catSlotsCasinoImage },
+  { id: '4', title: 'Rust', viewers: '76.6K', tag: 'FPS', secondaryTag: 'Survival', image: defaultStreamPlaceholder },
 ];
 
 const streams: Stream[] = [
-  { id: 'a', title: "I'm back from my trip, let's play!", streamer: 'FamousStreamer', isLive: true, viewers: 5420, tags: ['Gaming', 'Adventure'] },
-  { id: 'b', title: 'Late night coding sesh | !github', streamer: 'CoderGuy', isLive: true, viewers: 1800, tags: ['Coding', 'Tech', '!github'] },
-  { id: 'c', title: 'Valorant Ranked Climb', streamer: 'ProGamer', isLive: true, viewers: 990, tags: ['FPS', 'Valorant'] },
-  { id: 'd', title: 'Making a pizza from scratch', streamer: 'CookingChannel', isLive: true, viewers: 450, tags: ['Cooking', 'Food'] },
-  { id: 'e', title: 'Studying for the test', streamer: 'StudyBuddy', isLive: true, viewers: 210, tags: ['Study', 'Chill'] },
-  { id: 'f', title: 'Art & Design stream', streamer: 'DrawingGirl', isLive: true, viewers: 750, tags: ['Art', 'Design'] },
+  { id: 'a', title: "Imma finish all these pushups by the...", streamer: 'shortypie', isLive: true, viewers: 542, tags: ['English', '18+', 'irl', 'short', 'SmileRp', 'pog'], avatar: avatarProfileImage, streamImage: mainFeaturedStreamImage },
+  { id: 'b', title: "I'm back from my trip, let's play!", streamer: 'FamousStreamer', isLive: true, viewers: 5420, tags: ['Gaming', 'Adventure'], avatar: avatarProfileImage, streamImage: defaultStreamPlaceholder },
+  { id: 'c', title: 'Late night coding sesh | !github', streamer: 'CoderGuy', isLive: true, viewers: 1800, tags: ['Coding', 'Tech', '!github'], avatar: avatarProfileImage, streamImage: defaultStreamPlaceholder },
 ];
 
 
 const HomePage: React.FC = () => {
+  const featuredStreamData = streams[0];
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -50,39 +59,33 @@ const HomePage: React.FC = () => {
           <TouchableOpacity style={styles.getKicksButton}>
             <Text style={styles.getKicksButtonText}>Get KICKS</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.profileIcon} />
+          <TouchableOpacity style={styles.profileIcon}>
+            <Image source={avatarProfileImage} style={styles.profileIconImage} resizeMode="cover" />
+          </TouchableOpacity>
         </View>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TouchableOpacity style={styles.featuredLiveContainer} activeOpacity={0.9}>
-          <View style={styles.featuredLiveSimulatedImage}>
-            <Text style={styles.simulatedImageText}>ARC Raiders</Text>
-            <Text style={styles.simulatedImageTextSmall}>INVENTORY & MAP</Text>
-          </View>
-
-          <View style={styles.liveTagFeatured}>
+        <TouchableOpacity style={styles.mainFeaturedStreamContainer} activeOpacity={0.9}>
+          <Image source={mainFeaturedStreamImage} style={styles.mainFeaturedStreamImage} resizeMode="cover" />
+          <View style={styles.liveTagMainFeatured}>
             <Text style={styles.liveText}>LIVE</Text>
           </View>
-          <View style={styles.featuredLiveInfoOverlay}>
-            <View style={styles.featuredLiveAvatar} />
-
-            <View style={styles.featuredLiveTextGroup}>
-              <Text style={styles.featuredLiveViewers}>542 watching</Text>
-              <Text style={styles.featuredLiveTitle} numberOfLines={1}>Imma finish all these pushups by the...</Text>
-              <Text style={styles.featuredLiveStreamer}>shortypie</Text>
-
-              <View style={styles.featuredLiveTagsContainer}>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>English</Text></View>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>18+</Text></View>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>irl</Text></View>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>short</Text></View>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>SmileRp</Text></View>
-                <View style={styles.featuredLiveTag}><Text style={styles.featuredLiveTagText}>pog</Text></View>
+          <View style={styles.mainFeaturedStreamOverlay}>
+            <Image source={featuredStreamData.avatar} style={styles.mainFeaturedStreamAvatar} />
+            <View style={styles.mainFeaturedStreamTextGroup}>
+              <Text style={styles.mainFeaturedStreamViewers}>{featuredStreamData.viewers} watching</Text>
+              <Text style={styles.mainFeaturedStreamTitle} numberOfLines={1}>{featuredStreamData.title}</Text>
+              <Text style={styles.mainFeaturedStreamer}>{featuredStreamData.streamer}</Text>
+              <View style={styles.mainFeaturedStreamTagsContainer}>
+                {featuredStreamData.tags?.map((tag, index) => (
+                  <View key={index} style={styles.mainFeaturedStreamTag}><Text style={styles.mainFeaturedStreamTagText}>{tag}</Text></View>
+                ))}
               </View>
             </View>
           </View>
         </TouchableOpacity>
+
 
         <Text style={styles.sectionTitle}>Top Live Categories</Text>
         <FlatList
@@ -90,9 +93,7 @@ const HomePage: React.FC = () => {
           data={categories}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.categoryCard} activeOpacity={0.8}>
-              <View style={styles.categorySimulatedImage}>
-                <Text style={styles.simulatedCategoryTitle}>{item.title}</Text>
-              </View>
+              <Image source={item.image} style={styles.categoryImage} resizeMode="cover" />
 
               {item.tag && (
                 <View style={styles.categoryTag}>
@@ -116,7 +117,7 @@ const HomePage: React.FC = () => {
 
         <Text style={styles.sectionTitle}>Just Chatting</Text>
         <FlatList
-          data={streams}
+          data={streams.slice(1, 3)}
           renderItem={({ item }) => (
             <StreamCard
               title={item.title}
@@ -124,6 +125,8 @@ const HomePage: React.FC = () => {
               isLive={item.isLive}
               viewers={item.viewers}
               tags={item.tags}
+              streamImage={item.streamImage}
+              avatarImage={item.avatar}
             />
           )}
           keyExtractor={(item) => item.id}

@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#0E0E10',
         paddingTop: 30,
     },
+
     header: {
         paddingHorizontal: 15,
         paddingVertical: 10,
@@ -22,6 +23,11 @@ export const styles = StyleSheet.create({
         color: '#00FF00',
         fontSize: 24,
         fontWeight: '900',
+    },
+    logoImage: {
+        width: 60,
+        height: 30,
+        resizeMode: 'contain',
     },
     headerRight: {
         flexDirection: 'row',
@@ -46,35 +52,29 @@ export const styles = StyleSheet.create({
         backgroundColor: '#404040',
         borderWidth: 1,
         borderColor: '#00FF00',
+        overflow: 'hidden',
+    },
+    profileIconImage: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 17.5,
     },
 
-    featuredLiveContainer: {
+    mainFeaturedStreamContainer: {
         marginHorizontal: 10,
         marginTop: 15,
         borderRadius: 10,
         overflow: 'hidden',
         position: 'relative',
         marginBottom: 20,
-    },
-    featuredLiveSimulatedImage: {
-        width: '100%',
+        width: width - 20,
         height: width * 0.55,
-        backgroundColor: '#28282A',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: 40,
     },
-    simulatedImageText: {
-        color: '#B0B0B0',
-        fontSize: 22,
-        fontWeight: 'bold',
+    mainFeaturedStreamImage: {
+        width: '100%',
+        height: '100%',
     },
-    simulatedImageTextSmall: {
-        color: '#606060',
-        fontSize: 12,
-        marginTop: 5,
-    },
-    liveTagFeatured: {
+    liveTagMainFeatured: {
         position: 'absolute',
         top: 10,
         left: 10,
@@ -84,7 +84,12 @@ export const styles = StyleSheet.create({
         paddingVertical: 3,
         zIndex: 2,
     },
-    featuredLiveInfoOverlay: {
+    liveText: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    mainFeaturedStreamOverlay: {
         position: 'absolute',
         bottom: 0,
         left: 0,
@@ -94,7 +99,7 @@ export const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.8)',
     },
-    featuredLiveAvatar: {
+    mainFeaturedStreamAvatar: {
         width: 40,
         height: 40,
         borderRadius: 20,
@@ -103,31 +108,31 @@ export const styles = StyleSheet.create({
         borderColor: '#0E0E10',
         marginRight: 10,
     },
-    featuredLiveTextGroup: {
+    mainFeaturedStreamTextGroup: {
         flex: 1,
     },
-    featuredLiveViewers: {
+    mainFeaturedStreamViewers: {
         color: '#fff',
         fontSize: 12,
         fontWeight: 'bold',
         marginBottom: 5,
     },
-    featuredLiveTitle: {
+    mainFeaturedStreamTitle: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 3,
     },
-    featuredLiveStreamer: {
+    mainFeaturedStreamer: {
         color: '#B0B0B0',
         fontSize: 13,
         marginBottom: 5,
     },
-    featuredLiveTagsContainer: {
+    mainFeaturedStreamTagsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
-    featuredLiveTag: {
+    mainFeaturedStreamTag: {
         backgroundColor: '#28282A',
         borderRadius: 15,
         paddingHorizontal: 8,
@@ -135,7 +140,7 @@ export const styles = StyleSheet.create({
         marginRight: 5,
         marginBottom: 5,
     },
-    featuredLiveTagText: {
+    mainFeaturedStreamTagText: {
         color: '#B0B0B0',
         fontSize: 11,
     },
@@ -152,7 +157,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     categoryCard: {
-        width: width * 0.3,
+        width: width * 0.28,
         height: width * 0.45,
         marginRight: 10,
         borderRadius: 8,
@@ -160,19 +165,10 @@ export const styles = StyleSheet.create({
         backgroundColor: '#1C1C1E',
         position: 'relative',
     },
-    categorySimulatedImage: {
+    categoryImage: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#404040',
         position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    simulatedCategoryTitle: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginTop: 60,
     },
     categoryTag: {
         position: 'absolute',
@@ -253,10 +249,5 @@ export const styles = StyleSheet.create({
         fontSize: 11,
         fontWeight: '500',
         marginTop: 2,
-    },
-    liveText: {
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: 'bold',
     },
 });
